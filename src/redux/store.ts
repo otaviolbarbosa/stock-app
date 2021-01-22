@@ -1,13 +1,13 @@
-import { applyMiddleware, createStore, compose } from 'redux';
+import { applyMiddleware, createStore, compose, combineReducers } from 'redux';
 
-import stockReducer from './stockReducer';
+import stockReducer from './reducer';
 
-const composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose || compose;
+// const composeEnhancers = window ? window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose : compose;
 
 const store = createStore(
-  stockReducer,
+  combineReducers({ stockReducer }),
   {},
-  composeEnhancers()
+  // composeEnhancers()
 );
 
 export default store;

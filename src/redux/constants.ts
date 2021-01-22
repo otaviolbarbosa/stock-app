@@ -1,0 +1,2 @@
+export const STOCK_SET_QUOTE = 'STOCK_SET_QUOTE';
+export const STOCK_SET_CHART_DATA = 'STOCK_SET_CHART_DATA';
