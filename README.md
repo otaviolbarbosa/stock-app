@@ -1,30 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Stock App
 
-## Getting Started
+Este projeto visa exibir o valor de ações disponíveis no mercado americano, através do uso de uma API fornecida pela [IEX Cloud](https://iexcloud.io/).
 
-First, run the development server:
+Para o desenvolvimento deste projeto, foram utilizadas as seguintes bibliotecas e frameworks:
+- Javascript
+- ES5
+- React
+- NextJS
+- Redux
+- Styled Components
+- Husky
+- SSR
+- Lint
 
-```bash
-npm run dev
-# or
+
+# Instruções de Uso
+1. Clonar repositório
+ ```
+ git clone https://github.com/otaviomorcegao/stock-app.git
+ ```
+ 
+2. Instalar dependencias:
+```
+yarn install
+```
+3. Executar projet de desenvolvimento:
+```
 yarn dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
