@@ -20,11 +20,11 @@ Para o desenvolvimento deste projeto, foram utilizadas as seguintes bibliotecas 
  git clone https://github.com/otaviomorcegao/stock-app.git
  ```
  
-2. Instalar dependencias:
+2. Acessar a pasta e instalar dependencias:
 ```
 yarn install
 ```
-3. Executar projet de desenvolvimento:
+3. Executar projeto em ambiente de desenvolvimento:
 ```
 yarn dev
 ```
