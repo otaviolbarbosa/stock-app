@@ -23,7 +23,7 @@ export default function Home() {
           <Chart />
         </>
       )}
-      {/* { loading && <Loading /> } */}
+      { loading && <Loading /> }
     </SC.Container>
   )
 }

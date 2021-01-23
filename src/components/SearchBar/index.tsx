@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 
 import { getChartData, getLastPrice, getQuote } from '../../services/stock';
-import { setQuote, setChartData } from '../../redux/actions'
+import { setQuote, setChartData, setLoading } from '../../redux/actions'
 
 import * as SC from './styles';
 import { useDispatch, useSelector } from 'react-redux';
@@ -36,9 +36,11 @@ const SearchBar = () => {
       const quoteRes = await getQuote(stockSymbol);
       dispatch(setQuote(quoteRes.data));
     }
+    dispatch(setLoading(false));
   }
 
   const handleGetData = async () => {
+    dispatch(setLoading(true));
     setStockSymbol(searchString);
   }
 

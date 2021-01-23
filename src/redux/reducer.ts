@@ -22,6 +22,12 @@ const reducer = (state = INITIAL_STATE, { type, payload }) => {
         ...state,
         quote,
       };
+    case C.STOCK_IS_LOADING:
+      const { isLoading } = payload;
+      return {
+        ...state,
+        loading: isLoading
+      }
     default:
       return state;
   }
