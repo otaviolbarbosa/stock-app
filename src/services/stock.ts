@@ -13,6 +13,6 @@ export const getCompany = async (stockSymbol: string) => {
 };
   
 export const getChartData = async (stockSymbol: string) => {
-  return await api.get(`stock/${stockSymbol}/chart/5d`);
+  return await api.get(`stock/${stockSymbol}/chart/1m`);
 };
   

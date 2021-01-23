@@ -14,6 +14,8 @@ export const SpacedRow = styled.div`
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
 `;
 
 export const CompanyName = styled.div`
@@ -23,10 +25,33 @@ export const CompanyName = styled.div`
 
 export const StockPrice = styled.div`
   font-size: 2rem;
+
+  &.upblinking {
+    animation: upBlinkingText 2s;
+  
+    @keyframes upBlinkingText {
+      from { background-color: green; }
+      to { background-color: transparent; }
+    }
+  }
+
+  &.downblinking {
+    animation: downBlinkingText 2s;
+  
+    @keyframes downBlinkingText {
+      from { background-color: red; }
+      to { background-color: transparent; }
+    }
+  }
 `;
 
 export const StockSymbol = styled.div`
   color: #999;
+  padding-right: 30px;
+`;
+
+export const StockParams = styled.div`
+  padding-right: 10px;
 `;
 
 export const StockChange = styled.div`

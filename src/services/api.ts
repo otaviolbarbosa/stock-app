@@ -8,9 +8,7 @@ const api = axios.create({
 });
 
 api.interceptors.request.use(async (config: AxiosRequestConfig) => {
-  // const token = getToken();
-  config.params = { token: 'pk_2814f72efb764fd7ab72dd879a725e3f' };
-  // config.params['token'] = token;
+  config.params = { token: 'pk_20cc7cbbd64d41ddb1f7eedf86dbda03' };
 
   return config;
 });

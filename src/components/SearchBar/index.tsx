@@ -9,25 +9,46 @@ import { RootState } from '../../interfaces';
 
 const SearchBar = () => {
   const [stockSymbol, setStockSymbol] = useState('');
-  const { quote } = useSelector(({ stockReducer }: RootState) => stockReducer)
+  const [searchString, setSearchString] = useState('')
+  const { quote, chartData } = useSelector(({ stockReducer }: RootState) => stockReducer)
   const dispatch = useDispatch();
+  let loop = null;
+
+  useEffect(() => {
+    async function fetch() {
+      if(loop) clearInterval(loop);
+      loop = setInterval(fetchQuote, 3000);
+  
+      if(stockSymbol) {
+        const chartDataRes = await getChartData(stockSymbol);
+        dispatch(setChartData(chartDataRes.data));
+      }
+  
+    }
+
+    fetch();
+
+    return () => clearInterval(loop);
+  }, [stockSymbol]);
+
+  const fetchQuote = async () => {
+    if(stockSymbol !== '') {
+      const quoteRes = await getQuote(stockSymbol);
+      dispatch(setQuote(quoteRes.data));
+    }
+  }
 
   const handleGetData = async () => {
-    const quoteRes = await getQuote(stockSymbol);
-    dispatch(setQuote(quoteRes.data));
-    const chartDataRes = await getChartData(stockSymbol);
-    dispatch(setChartData(chartDataRes.data));
-    // const stockLastPrice = await getLastPrice(stockSymbol);
-    // setLastPrice(stockLastPrice.data);
+    setStockSymbol(searchString);
   }
 
   const handleChange = (e: ChangeEvent & { target: HTMLInputElement }) => {
-    setStockSymbol(e.target.value);
+    setSearchString(e.target.value);
   }
 
   return (
     <SC.Container>
-      <SC.SearchInput placeholder="Ex.: aapl" value={stockSymbol} onChange={handleChange} />
+      <SC.SearchInput placeholder="Ex.: aapl" value={searchString} onChange={handleChange} />
       <SC.SearchButton onClick={handleGetData}>Buscar</SC.SearchButton>
     </SC.Container>
   )

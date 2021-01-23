@@ -4,7 +4,8 @@ import * as C from './constants';
 
 const INITIAL_STATE: RootStateOrAny = {
   quote: null,
-  chartData: [],
+  chartData: null,
+  loading: false
 };
 
 const reducer = (state = INITIAL_STATE, { type, payload }) => {

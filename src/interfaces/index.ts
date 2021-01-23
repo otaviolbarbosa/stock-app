@@ -83,7 +83,8 @@ export interface StockReducer {
     uVolume: Number,
     updated: Number,
     volume: Number,
-  }]
+  }],
+  loading: Boolean
 }
 
 export interface RootState {
