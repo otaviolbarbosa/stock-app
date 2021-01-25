@@ -56,6 +56,7 @@ export interface StockReducer {
     week52Low: Number,
     ytdChange: Number,
   },
+  quoteError: Boolean,
   chartData: [{
     change: Number,
     changeOverTime: Number,
@@ -84,6 +85,7 @@ export interface StockReducer {
     updated: Number,
     volume: Number,
   }],
+  chartDataError: Boolean,
   loading: Boolean
 }
 

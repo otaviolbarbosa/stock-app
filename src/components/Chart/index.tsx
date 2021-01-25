@@ -9,25 +9,27 @@ import {
   Tooltip,
   ResponsiveContainer
 } from 'recharts';
-import { RootState } from "../../interfaces";
 import moment from 'moment';
 
-import * as CS from './styles';
+import { RootState } from "../../interfaces";
+import * as SC from './styles';
 
 const Chart = () => {
   const [data, setData] = useState([]);
-  const { chartData } = useSelector(({ stockReducer }: RootState) => stockReducer);
+  const { chartData, chartDataError } = useSelector(({ stockReducer }: RootState) => stockReducer);
 
   useEffect(() => {
-    setData(chartData.map(line => {
+    chartData && setData(chartData.map(line => {
       const date = moment(line.label).format('DD/MM/YY');
       
       return { date, price: line.close };
     }));  
   }, [chartData]);
 
-  return (
-    <CS.Container>
+  return chartDataError ? (
+    <SC.Error>Erro: Não é possível exibir o gráfico</SC.Error>
+  ) : (
+    <SC.Container>
       <ResponsiveContainer>
         <LineChart width={940} height={400} data={data}>
           <CartesianGrid strokeDasharray="2 5" vertical={false} />
@@ -37,7 +39,7 @@ const Chart = () => {
           <Line type="monotone" dot={false} dataKey="price" stroke="#0047bb" strokeWidth={2} />
         </LineChart>
       </ResponsiveContainer>
-    </CS.Container>
+    </SC.Container>
   )
 }
 

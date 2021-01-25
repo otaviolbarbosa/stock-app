@@ -4,7 +4,7 @@ import { RootState } from '../../interfaces';
 import * as SC from './styles';
 
 const Stock = () => {
-  const { quote, chartData } = useSelector(({ stockReducer }: RootState) => stockReducer);
+  const { quote, quoteError } = useSelector(({ stockReducer }: RootState) => stockReducer);
 
   const roundedNumber = (number: Number) => {
     return number.toFixed(2);
@@ -15,10 +15,12 @@ const Stock = () => {
     : <SC.ArrowDown isPositive={handleIsPositive()} />;
   const handleIsPositive = () => quote && quote.change > 0;
 
-  return (
+  return !quoteError && (
     <SC.Container>
       <SC.SpacedRow>
-        <SC.CompanyName>{quote.companyName}</SC.CompanyName>
+        <SC.CompanyName>
+          {quote.companyName}
+        </SC.CompanyName>
         <SC.StockPrice>{drawArrow()}${roundedNumber(quote.latestPrice)}</SC.StockPrice>
       </SC.SpacedRow>
       <SC.SpacedRow>

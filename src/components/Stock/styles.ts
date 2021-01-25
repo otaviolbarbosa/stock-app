@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
+import { FaArrowUp, FaArrowDown, FaStar, FaRegStar } from 'react-icons/fa';
 
 export const Container = styled.div`
 margin-top: 50px;

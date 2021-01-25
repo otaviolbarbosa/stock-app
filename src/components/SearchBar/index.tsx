@@ -1,16 +1,14 @@
 import { ChangeEvent, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { getChartData, getLastPrice, getQuote } from '../../services/stock';
-import { setQuote, setChartData, setLoading } from '../../redux/actions'
+import { getChartData, getQuote } from '../../services/stock';
+import { setQuote, setQuoteError, setChartData, setChartDataError, setLoading } from '../../redux/actions'
 
 import * as SC from './styles';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../interfaces';
 
 const SearchBar = () => {
   const [stockSymbol, setStockSymbol] = useState('');
   const [searchString, setSearchString] = useState('')
-  const { quote, chartData } = useSelector(({ stockReducer }: RootState) => stockReducer)
   const dispatch = useDispatch();
   let loop = null;
 
@@ -18,12 +16,15 @@ const SearchBar = () => {
     async function fetch() {
       if(loop) clearInterval(loop);
       loop = setInterval(fetchQuote, 3000);
-  
+
       if(stockSymbol) {
-        const chartDataRes = await getChartData(stockSymbol);
-        dispatch(setChartData(chartDataRes.data));
+        try {
+          const chartDataRes = await getChartData(stockSymbol);
+          dispatch(setChartData(chartDataRes.data));
+        } catch(err) {
+          dispatch(setChartDataError());
+        }
       }
-  
     }
 
     fetch();
@@ -33,8 +34,14 @@ const SearchBar = () => {
 
   const fetchQuote = async () => {
     if(stockSymbol !== '') {
-      const quoteRes = await getQuote(stockSymbol);
-      dispatch(setQuote(quoteRes.data));
+      try {
+        const quoteRes = await getQuote(stockSymbol);
+        dispatch(setQuote(quoteRes.data));
+      } catch(err) {
+        console.log(err);
+        dispatch(setQuoteError());
+        clearInterval(loop);
+      }
     }
     dispatch(setLoading(false));
   }
