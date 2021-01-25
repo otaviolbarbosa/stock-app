@@ -1,7 +1,6 @@
 import * as CS from './styles';
 
 const Loading = () => {
-
   return (
     <CS.Container>
       <CS.Spinner>
@@ -9,7 +8,7 @@ const Loading = () => {
         <div></div>
       </CS.Spinner>
     </CS.Container>
-  )
-}
+  );
+};
 
 export default Loading;

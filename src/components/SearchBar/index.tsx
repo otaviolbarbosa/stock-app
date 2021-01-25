@@ -2,27 +2,34 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { batch, useDispatch, useSelector } from 'react-redux';
 
 import { getChartData, getQuote } from '../../services/stock';
-import { setStockSymbol, setQuote, setQuoteError, setChartData, setChartDataError, setLoading } from '../../redux/actions'
+import {
+  setStockSymbol,
+  setQuote,
+  setQuoteError,
+  setChartData,
+  setChartDataError,
+  setLoading,
+} from '../../redux/actions';
 
 import * as SC from './styles';
 import { RootState } from '../../interfaces';
 
 const SearchBar = () => {
-  const [searchString, setSearchString] = useState('')
+  const [searchString, setSearchString] = useState('');
   const { stockSymbol } = useSelector(({ stockReducer }: RootState) => stockReducer);
   const dispatch = useDispatch();
   let loop = null;
 
   useEffect(() => {
     async function fetch() {
-      if(loop) clearInterval(loop);
-      if(stockSymbol) loop = setInterval(fetchQuote, 2000);
+      if (loop) clearInterval(loop);
+      if (stockSymbol) loop = setInterval(fetchQuote, 2000);
 
-      if(stockSymbol) {
+      if (stockSymbol) {
         try {
           const chartDataRes = await getChartData(stockSymbol);
           dispatch(setChartData(chartDataRes.data));
-        } catch(err) {
+        } catch (err) {
           dispatch(setChartDataError());
         }
       }
@@ -34,20 +41,20 @@ const SearchBar = () => {
   }, [stockSymbol]);
 
   const fetchQuote = async () => {
-    if(stockSymbol !== '') {
+    if (stockSymbol !== '') {
       try {
         const quoteRes = await getQuote(stockSymbol);
         dispatch(setQuote(quoteRes.data));
-      } catch(err) {
+      } catch (err) {
         console.log(err);
         dispatch(setQuoteError());
         clearInterval(loop);
       }
     }
     dispatch(setLoading(false));
-  }
+  };
 
-  const handleGetData = async e => {
+  const handleGetData = async (e) => {
     e.preventDefault();
     console.log('submit');
     batch(() => {
@@ -55,11 +62,11 @@ const SearchBar = () => {
       dispatch(setStockSymbol(searchString.toLowerCase()));
     });
     setSearchString('');
-  }
+  };
 
   const handleChange = (e: ChangeEvent & { target: HTMLInputElement }) => {
     setSearchString(e.target.value);
-  }
+  };
 
   return (
     <SC.Container>
@@ -68,7 +75,7 @@ const SearchBar = () => {
         <SC.SearchButton value="Buscar"></SC.SearchButton>
       </SC.Form>
     </SC.Container>
-  )
-}
+  );
+};
 
 export default SearchBar;

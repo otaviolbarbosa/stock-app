@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FaChevronRight } from 'react-icons/fa'
+import { FaChevronRight } from 'react-icons/fa';
 
 export const Container = styled.div`
   width: 25%;
@@ -14,8 +14,8 @@ export const FavoriteContainer = styled.div`
   align-items: center;
   padding: 15px 0;
   cursor: pointer;
-  
-  &+& {
+
+  & + & {
     border-top: 1px solid #ccc;
   }
 `;

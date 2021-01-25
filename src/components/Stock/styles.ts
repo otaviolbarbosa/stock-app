@@ -12,7 +12,7 @@ export const Column = styled.div`
   display: flex;
   flex-direction: column;
 
-  &+& {
+  & + & {
     padding-left: 20px;
     align-items: flex-end;
   }
@@ -34,21 +34,21 @@ export const Row = styled.div`
 
 export const RegStar = styled(FaRegStar).attrs({
   size: 26,
-  title: 'Adicionar aos favoritos'
+  title: 'Adicionar aos favoritos',
 })`
   margin-right: 10px;
   color: #0047bb;
   cursor: pointer;
-`
+`;
 
 export const Star = styled(FaStar).attrs({
   size: 26,
-  title: 'Remover dos favoritos'
+  title: 'Remover dos favoritos',
 })`
   margin-right: 10px;
   color: #0047bb;
   cursor: pointer;
-`
+`;
 
 export const CompanyName = styled.div`
   font-size: 2rem;
@@ -62,19 +62,27 @@ export const StockPrice = styled.div`
 
   &.upblinking {
     animation: upBlinkingText 2s;
-  
+
     @keyframes upBlinkingText {
-      from { background-color: green; }
-      to { background-color: transparent; }
+      from {
+        background-color: green;
+      }
+      to {
+        background-color: transparent;
+      }
     }
   }
 
   &.downblinking {
     animation: downBlinkingText 2s;
-  
+
     @keyframes downBlinkingText {
-      from { background-color: red; }
-      to { background-color: transparent; }
+      from {
+        background-color: red;
+      }
+      to {
+        background-color: transparent;
+      }
     }
   }
 `;
@@ -89,22 +97,22 @@ export const StockParams = styled.div`
 `;
 
 export const StockChange = styled.div`
-  color: ${({ isPositive }) => isPositive ? 'green' : 'red'};
+  color: ${({ isPositive }) => (isPositive ? 'green' : 'red')};
 `;
 
 export const StockChangePercent = styled.div`
   margin-left: 10px;
-  color: ${({ isPositive }) => isPositive ? 'green' : 'red'};
+  color: ${({ isPositive }) => (isPositive ? 'green' : 'red')};
 `;
 
 export const ArrowUp = styled(FaArrowUp).attrs({
-  size: 24
+  size: 24,
 })`
-  color: ${({ isPositive }) => isPositive ? 'green' : 'red'};
+  color: ${({ isPositive }) => (isPositive ? 'green' : 'red')};
 `;
 
 export const ArrowDown = styled(FaArrowDown).attrs({
-  size: 24
+  size: 24,
 })`
-  color: ${({ isPositive }) => isPositive ? 'green' : 'red'};
+  color: ${({ isPositive }) => (isPositive ? 'green' : 'red')};
 `;

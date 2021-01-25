@@ -1,7 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-import { getToken } from '../utils/auth';
-
 const api = axios.create({
   // baseURL: process.env.API_URL,
   baseURL: `https://cloud.iexapis.com/stable`,

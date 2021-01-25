@@ -8,7 +8,7 @@ const INITIAL_STATE: RootStateOrAny = {
   quoteError: false,
   chartData: null,
   chartDataError: false,
-  loading: false
+  loading: false,
 };
 
 const reducer = (state = INITIAL_STATE, { type, payload }) => {
@@ -17,7 +17,7 @@ const reducer = (state = INITIAL_STATE, { type, payload }) => {
       const { stockSymbol } = payload;
       return {
         ...state,
-        stockSymbol
+        stockSymbol,
       };
     case C.STOCK_SET_CHART_DATA:
       const { data: chartData } = payload;
@@ -30,7 +30,7 @@ const reducer = (state = INITIAL_STATE, { type, payload }) => {
       return {
         ...state,
         chartData: null,
-        chartDataError: true
+        chartDataError: true,
       };
     case C.STOCK_SET_QUOTE:
       const { data: quote } = payload;
@@ -49,8 +49,8 @@ const reducer = (state = INITIAL_STATE, { type, payload }) => {
       const { isLoading } = payload;
       return {
         ...state,
-        loading: isLoading
-      }
+        loading: isLoading,
+      };
     default:
       return state;
   }
