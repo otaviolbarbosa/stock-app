@@ -1,4 +1,5 @@
 export interface StockReducer {
+  stockSymbol: String,
   quote: {
     avgTotalVolume: Number,
     calculationPrice: String,
@@ -89,7 +90,17 @@ export interface StockReducer {
   loading: Boolean
 }
 
+export interface Favorite {
+  companyName: String,
+  symbol: String
+}
+
+export interface FavoriteReducer {
+  favorites: [Favorite],
+}
+
 export interface RootState {
   stockReducer: StockReducer
+  favoriteReducer: FavoriteReducer
   
 }

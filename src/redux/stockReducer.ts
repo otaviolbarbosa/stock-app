@@ -3,6 +3,7 @@ import { RootStateOrAny } from 'react-redux';
 import * as C from './constants';
 
 const INITIAL_STATE: RootStateOrAny = {
+  stockSymbol: null,
   quote: null,
   quoteError: false,
   chartData: null,
@@ -12,6 +13,12 @@ const INITIAL_STATE: RootStateOrAny = {
 
 const reducer = (state = INITIAL_STATE, { type, payload }) => {
   switch (type) {
+    case C.STOCK_SET_STOCK_SYMBOL:
+      const { stockSymbol } = payload;
+      return {
+        ...state,
+        stockSymbol
+      };
     case C.STOCK_SET_CHART_DATA:
       const { data: chartData } = payload;
       return {

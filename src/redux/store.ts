@@ -1,13 +1,11 @@
-import { applyMiddleware, createStore, compose, combineReducers } from 'redux';
+import { createStore, combineReducers } from 'redux';
 
-import stockReducer from './reducer';
-
-// const composeEnhancers = window ? window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose : compose;
+import stockReducer from './stockReducer';
+import favoriteReducer from './favoriteReducer';
 
 const store = createStore(
-  combineReducers({ stockReducer }),
+  combineReducers({ stockReducer, favoriteReducer }),
   {},
-  // composeEnhancers()
 );
 
 export default store;

@@ -1,21 +1,22 @@
 import { ChangeEvent, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { batch, useDispatch, useSelector } from 'react-redux';
 
 import { getChartData, getQuote } from '../../services/stock';
-import { setQuote, setQuoteError, setChartData, setChartDataError, setLoading } from '../../redux/actions'
+import { setStockSymbol, setQuote, setQuoteError, setChartData, setChartDataError, setLoading } from '../../redux/actions'
 
 import * as SC from './styles';
+import { RootState } from '../../interfaces';
 
 const SearchBar = () => {
-  const [stockSymbol, setStockSymbol] = useState('');
   const [searchString, setSearchString] = useState('')
+  const { stockSymbol } = useSelector(({ stockReducer }: RootState) => stockReducer);
   const dispatch = useDispatch();
   let loop = null;
 
   useEffect(() => {
     async function fetch() {
       if(loop) clearInterval(loop);
-      loop = setInterval(fetchQuote, 3000);
+      if(stockSymbol) loop = setInterval(fetchQuote, 2000);
 
       if(stockSymbol) {
         try {
@@ -46,9 +47,14 @@ const SearchBar = () => {
     dispatch(setLoading(false));
   }
 
-  const handleGetData = async () => {
-    dispatch(setLoading(true));
-    setStockSymbol(searchString);
+  const handleGetData = async e => {
+    e.preventDefault();
+    console.log('submit');
+    batch(() => {
+      dispatch(setLoading(true));
+      dispatch(setStockSymbol(searchString.toLowerCase()));
+    });
+    setSearchString('');
   }
 
   const handleChange = (e: ChangeEvent & { target: HTMLInputElement }) => {
@@ -57,8 +63,10 @@ const SearchBar = () => {
 
   return (
     <SC.Container>
-      <SC.SearchInput placeholder="Ex.: aapl" value={searchString} onChange={handleChange} />
-      <SC.SearchButton onClick={handleGetData}>Buscar</SC.SearchButton>
+      <SC.Form onSubmit={handleGetData}>
+        <SC.SearchInput placeholder="Ex.: aapl" value={searchString} onChange={handleChange} />
+        <SC.SearchButton value="Buscar"></SC.SearchButton>
+      </SC.Form>
     </SC.Container>
   )
 }

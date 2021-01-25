@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+`;
+
+export const Form = styled.form`
   display: flex;
 `;
 
@@ -17,7 +20,7 @@ export const SearchInput = styled.input`
   }
 `;
 
-export const SearchButton = styled.button`
+export const SearchButton = styled.input.attrs({ type: 'submit' })`
   margin-left: 20px;
   padding: 0px 30px;
   border-radius: 50px;

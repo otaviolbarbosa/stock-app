@@ -1,18 +1,18 @@
 import api from './api';
 
-export const getLastPrice = async (stockSymbol: string) => {
+export const getLastPrice = async (stockSymbol: String) => {
   return await api.get(`stock/${stockSymbol}/quote/latestPrice`);
 };
 
-export const getQuote = async (stockSymbol: string) => {
+export const getQuote = async (stockSymbol: String) => {
   return await api.get(`stock/${stockSymbol}/quote`);
 };
   
-export const getCompany = async (stockSymbol: string) => {
+export const getCompany = async (stockSymbol: String) => {
   return await api.get(`stock/${stockSymbol}/company`);
 };
   
-export const getChartData = async (stockSymbol: string) => {
+export const getChartData = async (stockSymbol: String) => {
   return await api.get(`stock/${stockSymbol}/chart/1m`);
 };
   

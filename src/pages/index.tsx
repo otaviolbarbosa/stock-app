@@ -14,17 +14,22 @@ export default function Home() {
   return (
     <SC.Container>
       <h1>Stock App</h1>
-      <SearchBar />
-      { quote && (
-        <>
-          <Stock />
-          <Chart />
-        </>
-      )}
-      { quoteError && (
-        <SC.NotFound>Esta ação não foi encontrada</SC.NotFound>
-      )}
-      { loading && <Loading /> }
+      <SC.Content>
+        < Starred />
+        <SC.Main>
+          <SearchBar />
+          { quote && (
+            <>
+              <Stock />
+              <Chart />
+            </>
+          )}
+          { quoteError && (
+            <SC.NotFound>Esta ação não foi encontrada</SC.NotFound>
+          )}
+          { loading && <Loading /> }
+        </SC.Main>
+      </SC.Content>
     </SC.Container>
   )
 }
