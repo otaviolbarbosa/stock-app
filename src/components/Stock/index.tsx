@@ -28,7 +28,6 @@ const Stock = () => {
 
   const toggleFavorite = () => {
     const { companyName, symbol } = quote;
-    console.log({ companyName, symbol }, isFavorite());
     return isFavorite()
       ? dispatch(removeFromFavorites(stockSymbol))
       : dispatch(addToFavorites({ companyName, symbol }));
@@ -45,7 +44,6 @@ const Stock = () => {
     );
   };
 
-  console.log(favorites);
   return (
     !quoteError && (
       <SC.Container>
@@ -64,7 +62,7 @@ const Stock = () => {
                 ${roundedNumber(quote.change)}
               </SC.StockChange>
               <SC.StockChangePercent isPositive={handleIsPositive()}>
-                {roundedNumber(quote.changePercent)}%
+                {roundedNumber(quote.changePercent * 100)}%
               </SC.StockChangePercent>
             </SC.Row>
           </SC.Column>
